@@ -21,7 +21,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthLoading());
     try {
       final loginResponse = await authRepository.login(
-        email: event.email,
+        username: event.username,
         password: event.password,
       );
       emit(AuthSuccess(loginResponse: loginResponse));
@@ -38,4 +38,3 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthInitial());
   }
 }
-

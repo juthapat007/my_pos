@@ -4,10 +4,10 @@ part of 'auth_bloc.dart';
 sealed class AuthEvent {}
 
 class LoginRequested extends AuthEvent {
-  final String email;
+  final String username; // เปลี่ยนเป็น username
   final String password;
 
-  LoginRequested({required this.email, required this.password});
+  LoginRequested({required this.username, required this.password});
 }
 
 class LogoutRequested extends AuthEvent {}

@@ -9,12 +9,14 @@ import 'package:pos_02/features/auth/views/login_page.dart';
 class AuthModule extends Module {
   @override
   void binds(i) {
-    i.addLazySingleton<AuthApi>(() => AuthApi(i<Dio>()));
+    i.addLazySingleton<AuthApi>(() => AuthApi(Modular.get<Dio>()));
 
-    i.addLazySingleton<AuthRepository>(() => AuthRepositoryImpl(i<AuthApi>()));
+    i.addLazySingleton<AuthRepository>(
+      () => AuthRepositoryImpl(Modular.get<AuthApi>()),
+    );
 
     i.addLazySingleton<AuthBloc>(
-      () => AuthBloc(authRepository: i<AuthRepository>()),
+      () => AuthBloc(authRepository: Modular.get<AuthRepository>()),
     );
   }
 

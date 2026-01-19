@@ -9,6 +9,7 @@ final class AuthLoading extends AuthState {}
 
 final class AuthAuthenticated extends AuthState {}
 
+
 final class AuthError extends AuthState {
   final String message;
   AuthError({required this.message});

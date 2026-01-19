@@ -11,11 +11,11 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<LoginResponse> login({
-    required String email,
+    required String username,
     required String password,
   }) async {
     try {
-      final response = await authApi.login(email, password);
+      final response = await authApi.login(username, password);
 
       final loginResponse = LoginResponse.fromJson(response.data);
 

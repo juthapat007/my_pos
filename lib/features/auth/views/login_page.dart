@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pos_02/core/constants/set_space.dart';
 import 'package:pos_02/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:pos_02/features/widget/app_text_form_field.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,22 +13,26 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _emailCtrl = TextEditingController();
+  final _usernameCtrl = TextEditingController();
   final _passwordCtrl = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  // ดึง AuthBloc จาก Modular
   late final AuthBloc _authBloc;
 
   @override
   void initState() {
     super.initState();
-    _authBloc = Modular.get<AuthBloc>();
+
+    try {
+      _authBloc = Modular.get<AuthBloc>();
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
   void dispose() {
-    _emailCtrl.dispose();
+    _usernameCtrl.dispose();
     _passwordCtrl.dispose();
     super.dispose();
   }
@@ -35,14 +41,13 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState!.validate()) {
       FocusScope.of(context).unfocus();
 
-      // ใช้ _authBloc ที่ดึงมาจาก Modular
       _authBloc.add(
         LoginRequested(
-          email: _emailCtrl.text.trim(),
+          username: _usernameCtrl.text.trim(), 
           password: _passwordCtrl.text,
         ),
       );
-    }
+    } else {}
   }
 
   @override
@@ -52,26 +57,26 @@ class _LoginPageState extends State<LoginPage> {
       child: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Login successful!'),
-                backgroundColor: Colors.green,
-              ),
-            );
+            //เอามาบอกตอน loginผ่านกเฉย๐
+            // ScaffoldMessenger.of(context).showSnackBar(
+            //   const SnackBar(
+            //     content: Text('Login successful!'),
+            //     backgroundColor: Colors.green,
+            //   ),
+            // );
 
-            // Navigate ไปหน้า products
             Modular.to.navigate('/products/');
           } else if (state is AuthError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(state.message),
+                content: Text('Username or Password is wrong'),
+                // content: Text(state.message),
                 backgroundColor: Colors.red,
               ),
             );
           }
         },
         child: Scaffold(
-          appBar: AppBar(title: const Text('Login'), centerTitle: true),
           body: BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
               final isLoading = state is AuthLoading;
@@ -83,35 +88,31 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TextFormField(
-                        controller: _emailCtrl,
-                        decoration: const InputDecoration(
-                          labelText: 'Email',
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.email),
-                        ),
-                        keyboardType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
+                      Text('LOGIN!'),
+                      SizedBox(height: space.m),
+                      AppTextFormField(
+                        controller: _usernameCtrl,
+                        label: 'Username',
+                        icon: Icons.person,
                         enabled: !isLoading,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your email';
+                            return 'Please enter your username';
                           }
                           return null;
                         },
                       ),
-                      const SizedBox(height: 16),
-                      TextFormField(
+
+                      SizedBox(height: space.m),
+
+                      AppTextFormField(
                         controller: _passwordCtrl,
-                        decoration: const InputDecoration(
-                          labelText: 'Password',
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.lock),
-                        ),
+                        label: 'Password',
+                        icon: Icons.lock,
                         obscureText: true,
-                        textInputAction: TextInputAction.done,
                         enabled: !isLoading,
-                        onFieldSubmitted: (_) => _handleLogin(),
+                        textInputAction: TextInputAction.done,
+                        onSubmitted: _handleLogin,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your password';
@@ -119,7 +120,9 @@ class _LoginPageState extends State<LoginPage> {
                           return null;
                         },
                       ),
-                      const SizedBox(height: 24),
+
+                      SizedBox(height: space.xl),
+
                       SizedBox(
                         width: double.infinity,
                         height: 48,

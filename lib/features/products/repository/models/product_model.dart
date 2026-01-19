@@ -24,8 +24,7 @@ class ProductModel {
       id: json['id'] as int,
       name: json['name'] as String,
       amount: json['amount'] as int,
-      price: json['price'] as double,
-      //บอกให้ backend ส่งprice เป็น double มันไม่ควรเป็นstring
+      price: (json['price'] as num).toDouble(),
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
       categoryId: json['category_id'] as int,
@@ -44,5 +43,28 @@ class ProductModel {
       'category_id': categoryId,
       'category_name': categoryName,
     };
+  }
+
+  // เพิ่ม copyWith สำหรับอัพเดทข้อมูล
+  ProductModel copyWith({
+    int? id,
+    String? name,
+    int? amount,
+    double? price,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    int? categoryId,
+    String? categoryName,
+  }) {
+    return ProductModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      amount: amount ?? this.amount,
+      price: price ?? this.price,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      categoryId: categoryId ?? this.categoryId,
+      categoryName: categoryName ?? this.categoryName,
+    );
   }
 }

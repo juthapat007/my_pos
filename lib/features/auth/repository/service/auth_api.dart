@@ -5,13 +5,11 @@ class AuthApi {
 
   AuthApi(this.dio);
 
-  // Add your API methods here
-  Future<Response> login(String email, String password) async {
+  Future<Response> login(String username, String password) async {
     final response = await dio.post(
       '/login',
-      data: {'email': email, 'password': password},
+      data: {'username': username, 'password': password},
     );
-    return response.data['token'];
-    // Handle response
+    return response;
   }
 }
