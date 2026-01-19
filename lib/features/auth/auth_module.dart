@@ -5,6 +5,8 @@ import 'package:pos_02/features/auth/repository/models/auth_repository.dart';
 import 'package:pos_02/features/auth/repository/models/auth_repository_impl.dart';
 import 'package:pos_02/features/auth/repository/service/auth_api.dart';
 import 'package:pos_02/features/auth/views/login_page.dart';
+import 'package:pos_02/features/products/presentation/bloc/products_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthModule extends Module {
   @override
@@ -22,6 +24,14 @@ class AuthModule extends Module {
 
   @override
   void routes(r) {
+    // r.child(
+    //   '/',
+    //   child: (_) => BlocProvider<AuthBloc>(
+    //     create: (_) => Modular.get<AuthBloc>()..add(AuthLoading()),
+    //     child: const LoginPage(),
+    //   ),
+    // );
     r.child('/', child: (_) => const LoginPage());
+    
   }
 }

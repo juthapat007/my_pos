@@ -15,11 +15,12 @@ class AuthInterceptor extends Interceptor {
     // ถ้ามี token ให้แนบไปกับ header
     if (token != null && token.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $token';
-      print('🔑 Token attached: Bearer ${token.substring(0, 20)}...');
+      print('Token attached: Bearer ${token.substring(0, 20)}...');
     } else {
-      print('⚠️ No token found');
+      print('No token found');
     }
 
     handler.next(options);
   }
 }
+//หน้านี้เอาไว้เช็ค token มาโดนส่งมามั้ย

@@ -1,3 +1,4 @@
+//หน้านี้เอาไว้แปลง json เป็น dart object
 class LoginResponse {
   final String token;
   final String? refreshToken;
@@ -6,7 +7,7 @@ class LoginResponse {
   LoginResponse({required this.token, this.refreshToken, this.user});
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
-    print('🔍 Login Response JSON: $json'); // Debug
+    print('Login Response JSON: $json'); // Debug
 
     return LoginResponse(
       token: json['token'] ?? json['access_token'] ?? json['accessToken'] ?? '',

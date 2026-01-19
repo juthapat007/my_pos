@@ -34,6 +34,7 @@ class AuthRepositoryImpl implements AuthRepository {
     final storage = Modular.get<FlutterSecureStorage>();
     await storage.delete(key: 'auth_token');
   }
+  //เอาไว้ลบ token
 
   @override
   Future<String?> getToken() async {
@@ -41,3 +42,4 @@ class AuthRepositoryImpl implements AuthRepository {
     return await storage.read(key: 'auth_token');
   }
 }
+//หน้านี้มีไว้ที่ส่วนของการเข้าสู่ระบบ และ ออกจากระบบ

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pos_02/core/constants/set_space.dart';
+import 'package:pos_02/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:pos_02/features/products/view/view_type.dart';
-
+import 'package:pos_02/features/widget/menu_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Menu extends StatelessWidget {
   final ViewType selectedView;
@@ -20,44 +23,36 @@ class Menu extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _MenuButton(
-            title: 'สินค้า',
+          const Text(
+            'เมนู',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: space.m),
+          MenuButton(
+            title: 'Products',
+            icon: Icons.inventory_2,
             isSelected: selectedView == ViewType.products,
             onTap: () => onMenuSelected(ViewType.products),
           ),
-          const SizedBox(height: 12),
-          _MenuButton(
-            title: 'บิล',
+          SizedBox(height: space.m),
+          MenuButton(
+            title: 'Bills',
+            icon: Icons.receipt_long,
             isSelected: selectedView == ViewType.bills,
             onTap: () => onMenuSelected(ViewType.bills),
           ),
+          const Spacer(),
+          MenuButton(
+            title: 'Logout',
+            icon: Icons.logout,
+            isDanger: true,
+            isSelected: false,
+            onTap: () {
+              context.read<AuthBloc>().add(AuthLogout());
+            },
+          ),
         ],
       ),
-    );
-  }
-}
-
-class _MenuButton extends StatelessWidget {
-  final String title;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  const _MenuButton({
-    required this.title,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: isSelected ? Colors.blue : Colors.white,
-        foregroundColor: isSelected ? Colors.white : Colors.black,
-        padding: const EdgeInsets.symmetric(vertical: 16),
-      ),
-      onPressed: onTap,
-      child: Text(title),
     );
   }
 }
