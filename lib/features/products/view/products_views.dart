@@ -233,28 +233,28 @@ class _ProductCard extends StatelessWidget {
 
 //เดี๋ยวค่อยกลับมาทำ
 // Bills View (Placeholder)
-class BillsView extends StatelessWidget {
-  const BillsView({super.key});
+// class BillsView extends StatelessWidget {
+//   const BillsView({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.receipt_long, size: 64, color: Colors.grey),
-            SizedBox(height: 16),
-            Text(
-              'หน้าบิล',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            Text('กำลังพัฒนา...'),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       color: Colors.white,
+//       child: const Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             Icon(Icons.receipt_long, size: 64, color: Colors.grey),
+//             SizedBox(height: 16),
+//             Text(
+//               'หน้าบิล',
+//               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+//             ),
+//             SizedBox(height: 8),
+//             Text('กำลังพัฒนา...'),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

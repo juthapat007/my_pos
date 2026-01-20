@@ -19,7 +19,7 @@ class ReceiptsModule extends Module {
      r.child(
     '/',
     child:(_) => BlocProvider<ReceiptsBloc>(
-      create: (_) => Modular.get<ReceiptsBloc>()..add(LoadReceiptsEvent()),
+      create: (_) => Modular.get<ReceiptsBloc>()..add(ReceiptsLoadEvent()),
       child: const ReceiptsView(),
     ),
      );

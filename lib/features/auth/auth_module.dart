@@ -11,26 +11,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AuthModule extends Module {
   @override
   void binds(i) {
-    i.addLazySingleton<AuthApi>(() => AuthApi(Modular.get<Dio>()));
+    // i.addLazySingleton<AuthApi>(() => AuthApi(Modular.get<Dio>()));
 
-    i.addLazySingleton<AuthRepository>(
-      () => AuthRepositoryImpl(Modular.get<AuthApi>()),
-    );
+    // i.addLazySingleton<AuthRepository>(
+    //   () => AuthRepositoryImpl(Modular.get<AuthApi>()),
+    // );
 
-    i.addLazySingleton<AuthBloc>(
-      () => AuthBloc(authRepository: Modular.get<AuthRepository>()),
-    );
+    // i.addLazySingleton<AuthBloc>(
+    //   () => AuthBloc(authRepository: Modular.get<AuthRepository>()),
+    // );
   }
 
   @override
   void routes(r) {
     r.child(
       '/',
-      child: (_) => BlocProvider<AuthBloc>(
-        create: (_) => Modular.get<AuthBloc>(),
+      child: (_) => BlocProvider<AuthBloc>.value(
+        value: Modular.get<AuthBloc>(),
         child: const LoginPage(),
       ),
     );
-    // r.child('/', child: (_) => const LoginPage());
   }
 }

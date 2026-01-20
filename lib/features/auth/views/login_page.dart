@@ -194,7 +194,6 @@ class _LoginPageState extends State<LoginPage> {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthAuthenticated) {
-          print('✅ Login Success - Navigating to /products/');
           Modular.to.navigate('/products');
         } else if (state is AuthError) {
           ScaffoldMessenger.of(context).showSnackBar(

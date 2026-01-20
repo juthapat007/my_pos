@@ -10,7 +10,7 @@ class ReceiptsBloc extends Bloc<ReceiptsEvent, ReceiptsState> {
   final ReceiptsApi receiptsApi;
 
   ReceiptsBloc({required this.receiptsApi}) : super(ReceiptsInitial()) {
-    on<LoadReceiptsEvent>(_onLoadReceits);
+    on<ReceiptsLoadEvent>(_onLoadReceits);
   }
   Future<void> _onLoadReceits(
     ReceiptsEvent event,

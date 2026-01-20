@@ -76,14 +76,15 @@ class MainModule extends Module {
       '/',
       child: (_) => MultiBlocProvider(
         providers: [
-          // ใช้ AuthBloc ที่มีอยู่แล้วจาก AuthModule
-          BlocProvider<AuthBloc>(create: (_) => Modular.get<AuthBloc>()),
+          // Use .value to get existing AuthBloc from AppModule
+          BlocProvider<AuthBloc>.value(value: Modular.get<AuthBloc>()),
           BlocProvider<ProductsBloc>(
             create: (_) =>
                 Modular.get<ProductsBloc>()..add(ProductsLoadEvent()),
           ),
           BlocProvider<ReceiptsBloc>(
-            create: (_) => Modular.get<ReceiptsBloc>(),
+            create: (_) =>
+                Modular.get<ReceiptsBloc>()..add(ReceiptsLoadEvent()),
           ),
         ],
         child: const MainPage(),

@@ -7,6 +7,7 @@ import 'package:pos_02/features/products/view/view_type.dart';
 import 'package:pos_02/features/receipts/presentation/bloc/receipts_bloc.dart';
 import 'package:pos_02/features/widget/menu_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class Menu extends StatelessWidget {
   final ViewType selectedView;
@@ -34,9 +35,12 @@ class Menu extends StatelessWidget {
             title: 'Products',
             icon: Icons.inventory_2_sharp,
             isDanger: false,
-            isSelected: false,
+            isSelected: selectedView == ViewType.products,
             onTap: () {
-              context.read<ProductsBloc>().add(ProductsLoadEvent());
+              Modular.to.navigate('/products');
+              ReadContext(
+                context,
+              ).read<ProductsBloc>().add(ProductsLoadEvent());
             },
           ),
           SizedBox(height: space.m),
@@ -44,27 +48,13 @@ class Menu extends StatelessWidget {
             title: 'Receipts',
             icon: Icons.inventory_2_sharp,
             isDanger: false,
-            isSelected: false,
+            isSelected: selectedView == ViewType.receipts,
             onTap: () {
-              // Modular.to.navigate('/receipts');
-              context.read<ReceiptsBloc>().add(LoadReceiptsEvent());
+              ReadContext(
+                context,
+              ).read<ReceiptsBloc>().add(ReceiptsLoadEvent());
             },
           ),
-          // SizedBox(height: space.m),
-
-          // MenuButton(
-          //   title: 'Products',
-          //   icon: Icons.inventory_2,
-          //   isSelected: selectedView == ViewType.products,
-          //   onTap: () => onMenuSelected(ViewType.products),
-          // ),
-          // SizedBox(height: space.m),
-          // MenuButton(
-          //   title: 'Bills',
-          //   icon: Icons.receipt_long,
-          //   isSelected: selectedView == ViewType.bills,
-          //   onTap: () => onMenuSelected(ViewType.bills),
-          // ),
           const Spacer(),
           MenuButton(
             title: 'Logout',
@@ -72,7 +62,7 @@ class Menu extends StatelessWidget {
             isDanger: true,
             isSelected: false,
             onTap: () {
-              context.read<AuthBloc>().add(AuthLogout());
+              ReadContext(context).read<AuthBloc>().add(AuthLogout());
             },
           ),
         ],

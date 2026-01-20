@@ -1,1 +1,1 @@
-enum ViewType { products, bills, logout }
+enum ViewType { products, receipts, logout }
