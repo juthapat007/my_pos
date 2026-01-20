@@ -24,14 +24,13 @@ class AuthModule extends Module {
 
   @override
   void routes(r) {
-    // r.child(
-    //   '/',
-    //   child: (_) => BlocProvider<AuthBloc>(
-    //     create: (_) => Modular.get<AuthBloc>()..add(AuthLoading()),
-    //     child: const LoginPage(),
-    //   ),
-    // );
-    r.child('/', child: (_) => const LoginPage());
-    
+    r.child(
+      '/',
+      child: (_) => BlocProvider<AuthBloc>(
+        create: (_) => Modular.get<AuthBloc>(),
+        child: const LoginPage(),
+      ),
+    );
+    // r.child('/', child: (_) => const LoginPage());
   }
 }

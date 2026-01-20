@@ -31,8 +31,8 @@ class AppModule extends Module {
   @override
   void routes(r) {
     r.module('/', module: AuthModule());
-    r.module('/main', module: MainModule());
-    // r.module('/products', module: ProductModule());
+    // r.module('/main', module: MainModule());
+    r.module('/products', module: MainModule());
     // r.module('/receipts', module: ReceiptsModule());
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pos_02/features/products/presentation/bloc/products_bloc.dart';
 import 'package:pos_02/features/products/presentation/bloc/products_event.dart';
+import 'package:pos_02/features/receipts/views/receipts_view.dart';
 import 'package:pos_02/features/widget/products_views.dart';
 import 'package:pos_02/features/products/view/view_type.dart';
 import 'menu.dart';
@@ -38,7 +39,7 @@ class Layout extends StatelessWidget {
               if (state.viewType == ViewType.products) {
                 return const ProductsView();
               } else {
-                return const BillsView();
+                return const ReceiptsView();
               }
             },
           ),
