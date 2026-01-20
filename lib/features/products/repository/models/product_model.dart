@@ -46,25 +46,25 @@ class ProductModel {
   }
 
   // เพิ่ม copyWith สำหรับอัพเดทข้อมูล
-  ProductModel copyWith({
-    int? id,
-    String? name,
-    int? amount,
-    double? price,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-    int? categoryId,
-    String? categoryName,
-  }) {
-    return ProductModel(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      amount: amount ?? this.amount,
-      price: price ?? this.price,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-      categoryId: categoryId ?? this.categoryId,
-      categoryName: categoryName ?? this.categoryName,
-    );
-  }
+  // ProductModel copyWith({
+  //   int? id,
+  //   String? name,
+  //   int? amount,
+  //   double? price,
+  //   DateTime? createdAt,
+  //   DateTime? updatedAt,
+  //   int? categoryId,
+  //   String? categoryName,
+  // }) {
+  //   return ProductModel(
+  //     id: id ?? this.id,
+  //     name: name ?? this.name,
+  //     amount: amount ?? this.amount,
+  //     price: price ?? this.price,
+  //     createdAt: createdAt ?? this.createdAt,
+  //     updatedAt: updatedAt ?? this.updatedAt,
+  //     categoryId: categoryId ?? this.categoryId,
+  //     categoryName: categoryName ?? this.categoryName,
+  //   );
+  // }
 }

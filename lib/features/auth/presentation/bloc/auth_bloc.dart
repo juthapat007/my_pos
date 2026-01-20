@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pos_02/features/auth/repository/models/auth_repository.dart';
-import 'package:pos_02/features/auth/repository/models/login_response.dart';
+import 'package:pos_02/features/auth/repository/service/auth_repository.dart';
+import 'package:pos_02/features/auth/repository/service/login_response.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
@@ -75,15 +75,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthAuthenticated());
     } catch (e) {
       emit(AuthError('Username or Password is wrong'));
-      emit(AuthInitial()); 
-      //ที่ไม่ใช้ AuthSuccess เพราะ
+      emit(AuthInitial());
     }
-    
   }
 
   Future<void> _onLogout(AuthLogout event, Emitter<AuthState> emit) async {
     await authRepository.logout();
     emit(AuthUnauthenticated());
+    //ปล่อยemitว่า ไม่ได้รับอนุญาตให้เข้ามา
   }
 
   void _onReset(AuthReset event, Emitter<AuthState> emit) {

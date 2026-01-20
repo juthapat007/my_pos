@@ -8,8 +8,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pos_02/features/receipts/presentation/bloc/receipts_bloc.dart';
 
-class ProductsPage extends StatelessWidget {
-  const ProductsPage({super.key});
+class MainPage extends StatelessWidget {
+  const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {

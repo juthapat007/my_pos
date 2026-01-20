@@ -1,5 +1,5 @@
-import 'package:pos_02/features/auth/repository/models/auth_repository.dart';
-import 'package:pos_02/features/auth/repository/models/login_response.dart';
+import 'package:pos_02/features/auth/repository/service/auth_repository.dart';
+import 'package:pos_02/features/auth/repository/service/login_response.dart';
 import 'package:pos_02/features/auth/repository/service/auth_api.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';

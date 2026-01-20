@@ -1,4 +1,4 @@
-import 'package:pos_02/features/auth/repository/models/login_response.dart';
+import 'package:pos_02/features/auth/repository/service/login_response.dart';
 
 abstract class AuthRepository {
   Future<LoginResponse> login({
